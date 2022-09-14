@@ -13,11 +13,12 @@ input.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
 function onInput(event) {
   const inputValue = event.target.value;
 
-  if (!inputValue === '') {
-    return;
-  }
   countryInfo.innerHTML = '';
   countriesList.innerHTML = '';
+
+  if (inputValue === '') {
+    return;
+  }
 
   fetchCountries(inputValue.trim())
     .then(renderCountry)
@@ -33,7 +34,7 @@ function renderCountry(countries) {
     );
     return;
   }
-  if (countries.length == 1) {
+  if (countries.length === 1) {
     renderInfoAboutCountry(countries);
   } else {
     renderListOfCountries(countries);
